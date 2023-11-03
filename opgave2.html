@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>
+        Programmeren: Opgave 2
+    </title>
+    
+    <script>
+     
+     function bereken(){
+       
+       let getal1 = document.getElementById("getal1").value;
+       let getal2 = document.getElementById("getal2").value;
+       let resultaat;
+       getal1 = parseInt(getal1);
+       getal2 = parseInt(getal2);
+       
+       let operator = document.getElementById("operator").value;
+       
+       if (operator == "Optellen") {
+         resultaat = telOp(getal1, getal2);
+       }
+       else if (operator == "Aftrekken") {
+         resultaat = trekAf(getal1, getal2);
+       }
+       else if (operator == "Vermenigvuldigen") {
+         resultaat = Vermenigvuldig(getal1, getal2);
+       }
+       else if (operator == "Delen") {
+         resultaat = Deel(getal1, getal2);
+       }
+       
+       document.getElementById("resultaat").innerHTML = resultaat;
+       
+     }
+       
+       
+       
+       function telOp(nummer1, nummer2){
+         let resultaat = nummer1 + nummer2;
+         return resultaat;
+       }
+       function trekAf(nummer1, nummer2){
+         let resultaat = nummer1 - nummer2;
+         return resultaat;
+       }
+       function Vermenigvuldig(nummer1, nummer2){
+         let resultaat = nummer1 * nummer2;
+         return resultaat;
+       }
+       function Deel(nummer1, nummer2){
+         let resultaat = nummer1 / nummer2;
+         return resultaat;
+       }
+    </script>
+</head>
+
+<body>
+    <h1>Opgave 2 van programmeren</h1><br><br>
+    
+    <label>Getal 1</label> <input id="getal1" type="number"><br>
+    <label>Getal 2</label> <input id="getal2" type="number"><br><br>
+    
+  
+<label>Bewerking</label>
+<select id="operator">
+  <option value="Optellen" selected>Optellen</option>
+  <option value="Aftrekken">Aftrekken</option>
+  <option value="Vermenigvuldigen">Vermenigvuldigen</option>
+  <option value="Delen">Delen</option>
+</select><br><br>
+
+<button onclick="bereken()" >Bereken</button>
+
+<label>Resultaat:</label> <div id = "resultaat">Hier komt het resultaat</div>
+  
+
+
+</body>
+
+
+
+
+
+
+</html>

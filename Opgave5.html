@@ -1,0 +1,174 @@
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Educatem training material">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Ryan Douglas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font/css/fontello.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+    
+    <style>
+        .square1 {
+         background-image: linear-gradient(navy, white);
+         width: 400px;
+         height: 500px;
+         border: 5px outset white;
+         padding: 50px;
+         margin: 100;
+         float: left;
+         position:fixed;
+         left: 250px;
+         
+         }
+         .square2 {
+         background-image: linear-gradient(navy, white);
+         width: 400px;
+         height: 500px;
+         border: 5px outset white;
+         padding: 50px;
+         margin: 100;
+         float: right;
+         position:fixed;
+         right: 250px;
+         }
+      </style>
+    
+    <script>
+    
+      let boodschappen = [];
+ 
+       
+      
+      function opslaan()
+      {
+       let boodschap = document.getElementById("boodschap").value;
+        
+        boodschappen.push(boodschap);
+        
+
+        document.getElementById("melding").innerHTML = "uw boodschap is toegevoegd aan de lijst:" + boodschap;
+       
+       let myJSONboodschappen = JSON.stringify(boodschappen);
+       
+       localStorage.setItem("boodschappen", myJSONboodschappen);
+       
+        
+        
+      }
+      
+    
+      function toevoegen()
+      {
+        let boodschap = document.getElementById("boodschap").value;
+        
+        boodschappen.push(boodschap);
+
+       let myJSONboodschappen = JSON.stringify(boodschappen);
+       
+       localStorage.setItem("boodschappen", myJSONboodschappen);
+        
+
+        document.getElementById("melding").innerHTML = "uw boodschap is toegevoegd aan de lijst:" + boodschap;
+      }
+      
+      function lezen()
+      {
+ 
+        
+        let JSONboodschappen = localStorage.getItem("boodschappen");
+        
+        if (JSONboodschappen == null)
+        {
+          boodschappen = [];
+          alert("boodschappenlijst is leeg");
+        }
+        else
+        {
+          boodschappen = JSON.parse(JSONboodschappen);
+        }
+       
+        weergevenLijst();
+        
+        
+
+      }
+      
+      
+      function weergevenLijst(){
+        
+        let htmltekst = "";
+        
+        for (i=0;i<boodschappen.length;i++)
+        {
+          htmltekst += boodschappen[i] + "<input type=checkbox onclick='update(" + i + ")'>  <br>";
+        }
+        
+        document.getElementById("melding").innerHTML = htmltekst;
+        
+      }
+      
+      function update(index)
+      {
+      boodschappen.splice(index, 1);
+        
+      weergevenLijst();
+        
+      }
+      
+      function wis()
+      {
+ 
+        document.getElementById("melding").innerHTML = "" ;
+
+      }
+      
+      function legenlijst()
+      {
+        boodschappen = [];
+        document.getElementById("melding").innerHTML = "De boodschappenlijst is geleegd"
+      }
+      
+    </script>
+    
+  </head>
+  
+    
+     <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.html"><img src="img/Danilo_schoolfoto.jfif" alt="" style="width:70px"></a>
+      <ul class="nav nav-collapse pull-right">
+        <li><a href="index.html" class="active"><i class="icon-user"></i> Profiel</a></li>
+        <li><a href="skills.html"><i class="icon-trophy"></i> Vaardigheden</a></li>
+      </ul>
+      <div class="nav-collapse collapse"></div>
+    </div>
+  </div>
+</div>
+
+    <div class="square1">
+    <label>Boodschap</label><input type="text" id="boodschap" style="width: 200px"><br>
+    
+    <button onclick="toevoegen()">toevoegen aan lijst</button> <br><Br>
+    
+    <button onclick="lezen()">lezen van lijst</button> <br><br>
+
+    <button onclick="wis()">verwijder tekst</button> <br><br>
+    
+    <button onclick="legenlijst()">Leegmaken boodschappenlijst</button> <br>
+    
+    </div>
+
+
+    <div class="square2">
+      <label style="text-align:center">Ophalen<br>Boodschappen</label>
+    <div id="melding"></div>
+    </div>
+    
+  </body>
+  
+</html>
